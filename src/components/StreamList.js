@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const StreamList = () => {
   const [items, setItems] = useState([]);
   const [input, setInput] = useState('');
+
+  // Load stored items from localStorage when the component mounts
+  useEffect(() => {
+    const storedItems = localStorage.getItem('streamListItems');
+    if (storedItems) {
+      setItems(JSON.parse(storedItems));
+    }
+  }, []);
+
+  // Save items to localStorage whenever the list changes
+  useEffect(() => {
+    localStorage.setItem('streamListItems', JSON.stringify(items));
+  }, [items]);
 
   const addItem = () => {
     if (input.trim() === '') {
@@ -10,7 +23,8 @@ const StreamList = () => {
       return;
     }
 
-    setItems([...items, input]);
+    const updatedItems = [...items, input];
+    setItems(updatedItems);
     setInput('');
   };
 
