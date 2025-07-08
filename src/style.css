@@ -128,3 +128,129 @@ input {
   size: 300%;
   padding: 0px 100px 12px 160px;
 }
+
+/* Cart styles */
+.cart-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid darkblue;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  background-color: lightskyblue;
+  flex-wrap: wrap;
+}
+
+.cart-details {
+  flex: 1;
+  min-width: 200px;
+  padding-left: 1rem;
+}
+
+.cart-details h4 {
+  margin: 0;
+  font-size: 120%;
+  color: darkblue;
+}
+
+.cart-details input {
+  width: 60px;
+  padding: 4px;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.cart-item img {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.cart-item button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.cart-item button:hover {
+  background-color: darkred;
+}
+
+.cart-summary {
+  text-align: right;
+  font-weight: bold;
+  font-size: 120%;
+  margin-top: 30px;
+}
+
+/* Subscriptions page styles */
+.subscriptions-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.subscription-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid darkblue;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: lightskyblue;
+  flex-wrap: wrap;
+}
+
+.subscription-card img {
+  max-width: 120px;
+  height: auto;
+  border-radius: 6px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+}
+
+.subscription-details {
+  flex: 1;
+  min-width: 220px;
+}
+
+.subscription-details h4 {
+  margin: 0;
+  color: darkblue;
+  font-size: 1.2rem;
+}
+
+.subscription-details p {
+  margin: 4px 0;
+}
+
+.subscription-card button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.subscription-card button:hover {
+  background-color: darkred;
+}
+
+.subscription-warning {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
