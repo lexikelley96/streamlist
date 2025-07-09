@@ -7,7 +7,6 @@ function TMDBSearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
-  // Fetch movies from TMDB based on user query
   const fetchMovies = async () => {
     if (!query) return;
     const response = await fetch(
@@ -18,31 +17,40 @@ function TMDBSearch() {
   };
 
   return (
-    <div className="tmdb-search">
+    <main className="tmdb-search-page">
       <h2>Search Movies</h2>
-      <input
-        type="text"
-        placeholder="Enter a movie title"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <button onClick={fetchMovies}>Search</button>
-
-      <div className="results">
-        {results.map((movie) => (
-          <div key={movie.id} className="movie">
-            <h3>{movie.title}</h3>
-            {movie.poster_path && (
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-              />
-            )}
-            <p>{movie.overview}</p>
-          </div>
-        ))}
+      <div className="tmdb-search-bar">
+        <input
+          type="text"
+          placeholder="Enter a movie title"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={fetchMovies} className="search-btn">Search</button>
       </div>
-    </div>
+
+      <div className="tmdb-results">
+        {results.length === 0 ? (
+          <p style={{ textAlign: 'center' }}>No results found.</p>
+        ) : (
+          results.map((movie) => (
+            <div key={movie.id} className="tmdb-movie-card">
+              {movie.poster_path && (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                  alt={movie.title}
+                  className="tmdb-movie-img"
+                />
+              )}
+              <div className="tmdb-movie-details">
+                <h4>{movie.title}</h4>
+                <p>{movie.overview || 'No description available.'}</p>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </main>
   );
 }
 

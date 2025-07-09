@@ -254,3 +254,73 @@ input {
   font-weight: bold;
   margin-top: 10px;
 }
+
+.tmdb-search-page {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tmdb-search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tmdb-search-bar input {
+  width: 60%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid darkblue;
+  border-radius: 8px;
+}
+
+.search-btn {
+  padding: 10px 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: darkred;
+}
+
+.tmdb-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tmdb-movie-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid darkblue;
+  background-color: lightskyblue;
+  padding: 16px;
+  border-radius: 8px;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tmdb-movie-img {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+}
+
+.tmdb-movie-details {
+  text-align: center;
+}
+
+.tmdb-movie-details h4 {
+  color: darkblue;
+  margin-bottom: 0.5rem;
+}
