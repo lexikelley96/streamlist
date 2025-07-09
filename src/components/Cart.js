@@ -29,7 +29,15 @@ const Cart = () => {
                       type="number"
                       min="1"
                       value={item.quantity}
-                      onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                      onChange={(e) => {
+                        const newQuantity = parseInt(e.target.value, 10);
+                        if (!isNaN(newQuantity) && newQuantity >= 1) {
+                          updateQuantity(item.id, newQuantity);
+                        } else if (e.target.value === '') {
+                          // If the input is explicitly cleared, set quantity to 1 as it's the minimum.
+                          updateQuantity(item.id, 1);
+                        }
+                      }}
                     />
                   </>
                 ) : (

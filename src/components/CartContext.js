@@ -19,6 +19,9 @@ export const CartProvider = ({ children }) => {
 
   // Add item to cart
   const addToCart = (item) => {
+    // Determine the quantity to add, defaulting to 1 if not specified or invalid
+    const quantityToAdd = item.quantity && item.quantity > 0 ? item.quantity : 1;
+
     if (isSubscription(item)) {
       const alreadyHasSubscription = cart.some(isSubscription);
       if (alreadyHasSubscription) {
@@ -31,12 +34,12 @@ export const CartProvider = ({ children }) => {
       setCart((prev) =>
         prev.map((cartItem) =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + quantityToAdd } // Use quantityToAdd
             : cartItem
         )
       );
     } else {
-      setCart((prev) => [...prev, { ...item, quantity: 1 }]);
+      setCart((prev) => [...prev, { ...item, quantity: quantityToAdd }]); // Use quantityToAdd
     }
 
     return { success: true };
