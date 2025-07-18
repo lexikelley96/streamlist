@@ -5,6 +5,8 @@ import Cart from './components/Cart';
 import About from './components/About';
 import TMDBSearch from './components/TMDBSearch';
 import Subscriptions from './components/Subscriptions';
+import LoginPage from './components/LoginPage';
+import PrivateRoute from './components/PrivateRoute';
 import { CartContext } from './components/CartContext';
 import './style.css';
 
@@ -29,11 +31,17 @@ function App() {
         </header>
 
         <Routes>
-          <Route path="/" element={<StreamList />} />
-          <Route path="/movies" element={<TMDBSearch />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/subscriptions" element={<Subscriptions />} />
+          {/* Public route */}
+          <Route path="/login" element={<LoginPage onLoginSuccess={() => window.location.href = '/'} />} />
+
+          {/* Grouped private routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<StreamList />} />
+            <Route path="/movies" element={<TMDBSearch />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/subscriptions" element={<Subscriptions />} />
+          </Route>
         </Routes>
       </div>
     </Router>
