@@ -1,7 +1,7 @@
 // File: src/components/TMDBSearch.js
 import React, { useState } from 'react';
 
-const TMDB_API_KEY = '5b79218eae4fdbc75f75f43873e48a5a'; // Replace with your actual API key
+const TMDB_API_KEY = '5b79218eae4fdbc75f75f43873e48a5a'; 
 
 function TMDBSearch() {
   const [query, setQuery] = useState('');
