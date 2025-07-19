@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { CartContext } from './CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { cart, removeFromCart, updateQuantity, totalItems, totalPrice } = useContext(CartContext);
-
   const isSubscription = (item) => item.service.toLowerCase().includes('subscription');
 
   return (
@@ -34,7 +35,6 @@ const Cart = () => {
                         if (!isNaN(newQuantity) && newQuantity >= 1) {
                           updateQuantity(item.id, newQuantity);
                         } else if (e.target.value === '') {
-                          // If the input is explicitly cleared, set quantity to 1 as it's the minimum.
                           updateQuantity(item.id, 1);
                         }
                       }}
@@ -53,6 +53,12 @@ const Cart = () => {
           <div className="cart-summary">
             <h3>Total Items: {totalItems}</h3>
             <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+
+            <div style={{ marginTop: '1rem' }}>
+              <button onClick={() => navigate('/checkout')}>
+                Proceed to Checkout
+              </button>
+            </div>
           </div>
         </>
       )}
