@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
 
   // Add item to cart
   const addToCart = (item) => {
-    // Determine the quantity to add, defaulting to 1 if not specified or invalid
     const quantityToAdd = item.quantity && item.quantity > 0 ? item.quantity : 1;
 
     if (isSubscription(item)) {
@@ -34,12 +33,12 @@ export const CartProvider = ({ children }) => {
       setCart((prev) =>
         prev.map((cartItem) =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + quantityToAdd } // Use quantityToAdd
+            ? { ...cartItem, quantity: cartItem.quantity + quantityToAdd }
             : cartItem
         )
       );
     } else {
-      setCart((prev) => [...prev, { ...item, quantity: quantityToAdd }]); // Use quantityToAdd
+      setCart((prev) => [...prev, { ...item, quantity: quantityToAdd }]);
     }
 
     return { success: true };
@@ -56,6 +55,10 @@ export const CartProvider = ({ children }) => {
         item.id === id ? { ...item, quantity } : item
       )
     );
+  };
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   const totalItems = useMemo(
@@ -75,6 +78,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
         totalItems,
         totalPrice,
       }}

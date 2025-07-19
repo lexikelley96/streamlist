@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage';
 import PrivateRoute from './components/PrivateRoute';
 import { CartContext } from './components/CartContext';
 import './style.css';
+import CreditCardForm from './components/CreditCardForm';
 
 function App() {
   const { totalItems } = useContext(CartContext);
@@ -41,6 +42,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/about" element={<About />} />
             <Route path="/subscriptions" element={<Subscriptions />} />
+			<Route path="/checkout" element={<CreditCardForm />} />
           </Route>
         </Routes>
       </div>

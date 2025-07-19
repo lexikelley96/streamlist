@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from './CartContext';
 
 const CreditCardForm = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
+  const { clearCart } = useContext(CartContext);
+
 
   const formatCardNumber = (value) => {
-    // Remove non-digit characters and add spaces
     return value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
   };
 
@@ -18,36 +21,38 @@ const CreditCardForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (cardNumber.length === 19) { // 16 digits + 3 spaces
+    if (cardNumber.length === 19) {
       localStorage.setItem('creditCard', cardNumber);
+	  clearCart();
       setSubmitted(true);
-      setTimeout(() => navigate('/'), 2000); // Redirect after success
+      setTimeout(() => navigate('/'), 2000);
     } else {
       alert('Please enter a valid 16-digit card number.');
     }
   };
 
   return (
-    <div className="credit-card-form" style={{ padding: '2rem', textAlign: 'center' }}>
-      <h2>Enter Your Credit Card Info</h2>
-      {submitted ? (
-        <p>✅ Card saved successfully! Redirecting...</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="1234 5678 9012 3456"
-            value={cardNumber}
-            onChange={handleChange}
-            maxLength={19}
-            style={{ fontSize: '1.2rem', padding: '0.5rem', width: '280px' }}
-            required
-          />
-          <br /><br />
-          <button type="submit">Submit</button>
-        </form>
-      )}
-    </div>
+    <main className="credit-form-wrapper">
+      <div className="credit-form">
+        <h2>Enter Your Credit Card Info</h2>
+        {submitted ? (
+          <p className="success-message"> Card saved successfully! Redirecting...</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="1234 5678 9012 3456"
+              value={cardNumber}
+              onChange={handleChange}
+              maxLength={19}
+              required
+            />
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        )}
+      </div>
+    </main>
   );
 };
 
